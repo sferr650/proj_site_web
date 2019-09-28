@@ -1,0 +1,19 @@
+.Bienvenue
+{
+	color : blue;
+}
+.photo_devanture_ens
+{
+	margin-top : 96px;
+}
+#conteneur
+{
+	display : flex;
+	flex-wrap : wrap;
+	
+}
+
+.element1
+{
+	border : 1px solid black;
+}

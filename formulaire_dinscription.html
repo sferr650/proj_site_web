@@ -1,0 +1,68 @@
+<html>
+	<head/>
+		<title>formulaire d'inscription</title>
+		<meta charset= 'utf-8'> 
+		<link  rel="stylesheet" href="acceuil_css.css"/>
+	</head>
+	
+	<body>
+	
+	<section>
+	
+	<form method = "post" action = "traitement.php">
+		
+		<fieldset>
+			<legend> Veuillez renseigner les informations suivantes </legend>
+		
+			<label> Votre nom </label><br />
+			<input type = "text" name = "nom" id = "nom"/><br/>
+			
+			<label> Votre prénom </label><br/>
+			<input type = "text" name = "prenom" id = "prenom" /><br/>
+			
+			<label> Votre promo </label><br />
+			<select name = "promo" id = "promo">
+				<option value = "2019">2019</option>
+				<option value = "2019">2018</option>
+				<option value = "2019">2017</option>
+				<option value = "2019">2016</option>
+				<option value = "2019">2015</option>
+				<option value = "2019">2014</option>
+				<option value = "2019">2013</option>
+				<option value = "2019">2012</option>
+				<option value = "2019">2011</option>
+				<option value = "2019">2010</option>
+				<option value = "2019">2009</option>
+				<option value = "2019">2008</option>
+				<option value = "2019">2006</option>
+				<option value = "2019">2005</option>
+				<option value = "2019">2004</option>
+				<option value = "2019">2003</option>
+				<option value = "2019">2002</option>
+				<option value = "2019">2001</option>
+				<option value = "2019">2000</option>
+				<option value = "2019">1999</option>
+				<option value = "2019">1998</option>
+				<option value = "2019">1997</option>
+				<option value = "2019">1996</option>
+				<option value = "2019">1995</option>
+				<option value = "2019">1994</option>
+			</select><br/>
+			
+			<label> Votre mail </label><br />
+			<input type = "email" name = "email" id = "email" /><br/>
+			
+			<label> Votre mot de passe </label><br />
+			<input type = "password" name = "password" id = "password" /><br/>
+			
+			<input type="submit" value="Envoyer" />
+		</fieldset>
+			
+		<p>déjà inscrit ? <a href="connexion.html">(Lien vers la page de connexion)</a></p>
+	
+	</form>
+	
+	</section>
+	
+	</body>
+</html>

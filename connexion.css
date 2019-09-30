@@ -1,0 +1,51 @@
+/* Header */
+
+header
+{
+	display: flex;
+	flex-direction: column;
+}
+
+
+#bandeau_du_bas
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end ;
+	background-color: #534e4e;
+}
+
+nav ul 
+{
+	list-style-type: none ;
+	display: flex;
+	margin-right: 500px;
+	padding-bottom: 50px;
+}
+nav li
+{
+	margin: 3px;
+}
+
+nav a
+{
+	text-decoration: none ;
+}
+
+#bandeau_du_haut
+{
+	background-color: #858484;
+}
+
+.haut
+{
+	list-style-type: none ;
+	margin-left:1200px;
+	color: white;
+}
+
+a
+{
+	text-decoration: none ;
+	color: white;
+}

@@ -2,24 +2,55 @@
 	<head/>
 		<title>connexion</title>
 		<meta charset= 'utf-8'> 
-		<link  rel="stylesheet" href="acceuil_css.css"/>
+		<link  rel="stylesheet" href="connexion.css"/>
 	</head>
 	
 	<body>
+		<div id = "page">
+			<header>
+				
+				<div id="bandeau_du_haut">
+					<ul>
+						<li class="haut"><a href="#">Connexion/inscription</a></li>
+					</ul>
+				</div>
+				
+				<div id="bandeau_du_bas">
+					<img src ="ENS_logo.png" alt ="logo header" href = "connexion.html"  />
+					<nav>
+						<ul>
+							<li><a href="#">Acceuil</a></li>
+							<li><a href="#">Anciens élèves</a></li>
+						</ul>
+					</nav>
+				</div>
+				
+
+			</header>
+					
+					
+		<section>
 	
-	<section>
-	<fieldset>
-		<legend> Veuillez renseigner les informations suivantes </legend>
+			<form method = "post" action = "traitement.php">
 	
-		<label> e-mail </label><br />
-		<input type = "email" name = "email" id = "email" /><br/>
+				<fieldset>
+					<legend> Veuillez renseigner les informations suivantes </legend>
 	
-		<label> mot de passe </label><br />
-		<input type = "password" name = "password" id = "password" /><br/>
 	
-		<input type="submit" value="se connecter" />
-	</fieldset>
-	</section>
+					<label> e-mail </label><br />
+					<input type = "email" name = "email" id = "email" /><br/>
+
+					<label> mot de passe </label><br />
+					<input type = "password" name = "password" id = "password" /><br/>
+				</fieldset>
+	
+				<p> 
+				<input type="submit" value="se connecter" /> 
+				</p>
+	
+			</form>
+	
+		</section>
 	
 	</body>
 </html>

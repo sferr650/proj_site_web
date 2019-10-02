@@ -1,19 +1,182 @@
-.Bienvenue
+/*navigation barre------------------Début---------------------------------*/
+.header
 {
-	color : blue;
-}
-.photo_devanture_ens
-{
-margin-top : 96px;
-}
-#conteneur
-{
-	display : flex;
-	flex-wrap : wrap;
-	
+	position: fixed ;
+	right : 0; left:0 ; top:0;
 }
 
-.element1
+#bandeau_du_bas
 {
-	border : 1px solid black;
+	display: flex;
+	justify-content: space-between;
+	align-items: center ;
+	background-color: #534e4e;
+	box-shadow: 6px 6px 6px black inset;
+	z-index:1;
+	height: 60px;
 }
+
+
+.logo:hover
+{
+	border-style:solid;
+	border-width:2px ;
+	border-color: black;
+	box-shadow: 10px 5px 20px black ;
+	padding:0px;
+}
+
+.logo
+{
+	width: 60px;
+	height:60px;
+	z-index: 2;
+}
+
+#menu ul 
+{
+	list-style-type: none ;
+	display: flex;
+}
+
+#menu  li
+{
+	margin-right: 50px;
+	font-size : 20px;
+}
+
+#menu a
+{
+	text-decoration: none ;
+}
+
+#menu a:hover
+{
+	text-decoration : underline;
+}
+
+
+/*style pour le bandeau du haut*/
+
+#bandeau_du_haut
+{
+	background-color: #858484;
+	display: flex;
+	justify-content: flex-end;
+	align-items : center;
+	height: 40px;
+}
+
+#connexion_inscription
+{
+	display : flex ;
+}
+
+#connexion_inscription li
+{
+	font-size : 20px;
+	margin-right: 50px;
+	list-style-type: none ;
+}
+
+#connexion_inscription li a:hover
+{
+	text-decoration : underline;
+}
+
+.texte_bandeau
+{
+	text-decoration: none ;
+	color: white;
+	font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+/*navigation barre------------------Fin---------------------------------*/
+
+/*Footer----------------------------Début-----------------------------*/
+#footer{
+	background-color : #000000;
+	margin: 0%;
+	min-width : 100%;
+	min-height : 100px;
+}
+#footer p {
+	padding: 0px;
+	margin : 0px;
+	color : white;
+}
+
+/*Footer----------------------------Fin-----------------------------*/
+
+/*Page d'acceuil, main part---------Début-------------------------------*/
+
+#bodyacceuil {
+	margin: 0px;
+}
+#imagebackground{
+	
+	/*chargement et ajustement de la taille est opacité de l'image*/
+	background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(ENS-REnnes_dev.jpg);
+	background-repeat:no-repeat;
+	background-size: 100% 100%;
+	
+	
+	/*ajustement de la taille de la div*/
+	width: 100%;
+    height: 0;
+    margin: 0;
+    padding-bottom: 50%;
+}
+
+#imagebackground p {
+	
+	margin: 0;
+	padding-top : 25%;
+	text-align : center;
+	
+	color :#FFFFFF;
+	font-family: 'Ubuntu', sans-serif;
+	font-size :40;
+	font-style : italic;
+}
+/*Page d'acceuil, main part---------Fin-------------------------------*/
+
+/*Page ancien élèves----------------Début-----------------------------*/
+
+#bodyancieneleves {
+	margin: 0px;
+}
+
+.boutonpromotion{
+	background-color: black;
+	color: white;
+	border: none;
+	cursor: pointer;
+	padding:20px;
+	margin-top:20px;
+	font-size: 30px;
+}
+
+.boutonpromotion:hover{
+	background-color: #ff4444;
+}
+
+#navpromotion {
+
+	background-color : red;
+	display: inline-block;
+}
+#navpromotion-child  {
+display: none;
+background-color: #f28c8c;
+min-width: 50px;
+}
+#navpromotion-child  a {
+color: white;
+padding: 20px;
+text-decoration: none;
+display: block;
+}
+#navpromotion:hover #navpromotion-child {
+display: block;
+}
+

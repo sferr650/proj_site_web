@@ -1,19 +1,166 @@
-.Bienvenue
-{
-	color : blue;
-}
-.photo_devanture_ens
-{
-margin-top : 96px;
-}
-#conteneur
-{
-	display : flex;
-	flex-wrap : wrap;
+/*navigation barre------------------Début---------------------------------*/
+.logoens {
+	min-width: 100%;
+	max-height: 100%;
 	
 }
 
-.element1
-{
-	border : 1px solid black;
+#conteneur {
+	/*transfrome l'élément conteneur en grid*/
+	display: grid;
+	min-width: 100%;
+	position : fixed;
+	grid-template-rows :repeat(1, 40px);
+	grid-template-columns: 4% 85% 11%;
+	
 }
+
+#connexion{
+	background:#504543;
+	text-align: center;
+	padding-top : 5%;
+	border: 1.5px solid #fff;
+	border-radius: 10px;
+}
+#connexion a{
+	
+	color: #FFFFFF;
+	text-decoration:none;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 18;
+	font-style : italic;
+}
+
+#connexion a:hover{
+	font-size: 20;
+}
+
+#menu
+{	
+	/*transfrome l'élément menu en grid*/
+	display: grid;
+	grid-template-columns: repeat(4, 25%);
+	grid-template-rows :repeat(1, 100%);
+	
+	list-style-type:none;
+	
+	/*fixe la taille de menu pour qu'il occupe 100% de son espace*/
+	padding-left :0px;
+	min-height : 100%;
+	min-width:100%;
+ 
+}
+#menu div{
+	background:#504543;
+	
+}
+#menu a:link, #menu a:visited 
+{
+	display: block;
+	
+	color: #0ACCF5;
+	background:#504543;
+	
+	text-decoration:none;
+	font-family: 'Ubuntu', sans-serif;
+	font-size :18;
+	
+	width : 100%;
+	padding-top : 3%;
+	text-align: center;
+}
+#menu a:hover 
+{
+   color:#fff;
+}
+
+/*navigation barre------------------Fin---------------------------------*/
+
+/*Footer----------------------------Début-----------------------------*/
+#footer{
+	background-color : #000000;
+	margin: 0%;
+	min-width : 100%;
+	min-height : 100px;
+}
+#footer p {
+	padding: 0px;
+	margin : 0px;
+	color : white;
+}
+
+/*Footer----------------------------Fin-----------------------------*/
+
+/*Page d'acceuil, main part---------Début-------------------------------*/
+
+#bodyacceuil {
+	margin: 0px;
+}
+#imagebackground{
+	
+	/*chargement et ajustement de la taille est opacité de l'image*/
+	background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(ENS-REnnes_dev.jpg);
+	background-repeat:no-repeat;
+	background-size: 100% 100%;
+	
+	
+	/*ajustement de la taille de la div*/
+	width: 100%;
+    height: 0;
+    margin: 0;
+    padding-bottom: 50%;
+}
+
+#imagebackground p {
+	
+	margin: 0;
+	padding-top : 25%;
+	text-align : center;
+	
+	color :#FFFFFF;
+	font-family: 'Ubuntu', sans-serif;
+	font-size :40;
+	font-style : italic;
+}
+/*Page d'acceuil, main part---------Fin-------------------------------*/
+
+/*Page ancien élèves----------------Début-----------------------------*/
+
+#bodyancieneleves {
+	margin: 0px;
+}
+
+.boutonpromotion{
+	background-color: black;
+	color: white;
+	border: none;
+	cursor: pointer;
+	padding:20px;
+	margin-top:20px;
+	font-size: 30px;
+}
+
+.boutonpromotion:hover{
+	background-color: #ff4444;
+}
+
+#navpromotion {
+
+	background-color : red;
+	display: inline-block;
+}
+#navpromotion-child  {
+display: none;
+background-color: #f28c8c;
+min-width: 50px;
+}
+#navpromotion-child  a {
+color: white;
+padding: 20px;
+text-decoration: none;
+display: block;
+}
+#navpromotion:hover #navpromotion-child {
+display: block;
+}
+

@@ -33,24 +33,24 @@ header
 	z-index: 2;
 }
 
-nav ul 
+#menu ul 
 {
 	list-style-type: none ;
 	display: flex;
 }
 
-nav li
+#menu  li
 {
 	margin-right: 50px;
 	font-size : 20px;
 }
 
-nav a
+#menu a
 {
 	text-decoration: none ;
 }
 
-nav a:hover
+#menu a:hover
 {
 	text-decoration : underline;
 }
@@ -67,14 +67,19 @@ nav a:hover
 	height: 40px;
 }
 
-.haut
+#connexion_inscription
+{
+	display : flex ;
+}
+
+#connexion_inscription li
 {
 	font-size : 20px;
 	margin-right: 50px;
 	list-style-type: none ;
 }
 
-.haut:hover
+#connexion_inscription li a:hover
 {
 	text-decoration : underline;
 }

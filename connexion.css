@@ -1,3 +1,4 @@
+
 /* style pour le bandeau du bas*/
 header
 {
@@ -93,5 +94,20 @@ header
 
 section
 {
-	padding : 10%;
+	display: flex ;
+	justify-content :center;
+	margin-top: 10% ;
+}
+
+fieldset
+{
+	border-radius: 10px 0px 10px 0px;
+	border-color: #6376ae ;
+	font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+
+.lien_inscription
+{
+	font-family: 'Trebuchet MS', Arial, sans-serif;
+	font-weight : bold;
 }

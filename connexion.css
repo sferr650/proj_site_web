@@ -1,4 +1,9 @@
 /* style pour le bandeau du bas*/
+header
+{
+	position: fixed ;
+	right : 0; left:0 ; top:0;
+}
 
 #bandeau_du_bas
 {
@@ -8,7 +13,7 @@
 	background-color: #534e4e;
 	box-shadow: 6px 6px 6px black inset;
 	z-index:1;
-	height: 102px;
+	height: 60px;
 }
 
 
@@ -23,8 +28,8 @@
 
 .logo
 {
-	width: 102px;
-	height:102px;
+	width: 60px;
+	height:60px;
 	z-index: 2;
 }
 
@@ -58,6 +63,8 @@ nav a:hover
 	background-color: #858484;
 	display: flex;
 	justify-content: flex-end;
+	align-items : center;
+	height: 40px;
 }
 
 .haut
@@ -77,4 +84,9 @@ a
 	text-decoration: none ;
 	color: white;
 	font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+
+section
+{
+	padding : 10%;
 }

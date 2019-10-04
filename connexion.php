@@ -42,7 +42,7 @@ $password = 0 ;
 
 		
 		<section> 
-			<form method = "post" <?php if (($password == 0) AND ($email == 0) {?> action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" <?php} elseif(($password == 0) AND ($email == 0)) {?> action = "acceuil.php" <?php}?>>
+			<form method ="post" <?php if (($password == 0) AND ($email == 0) {?> action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" <?php} elseif(($password == 0) AND ($email == 0)) {?> action = "acceuil.php" <?php}?>>
 	
 				<fieldset>
 					<legend> Veuillez renseigner les informations suivantes </legend>

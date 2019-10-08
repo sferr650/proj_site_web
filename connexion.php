@@ -4,17 +4,71 @@ $conn = new mysqli ("localhost" , "root" , "", "informations");
 if ($conn -> connect_error) {
 	die ("Connexion failed: " . $conn -> connect_error);
 }
-$email = 0 ; 
-$password = 0 ;
-?>
 
-<html>
+$email = 0 ;
+$password = 0;
+
+if (isset($_POST['submit']))
+{
+	
+	$sql = "SELECT mail , mdp , nom , prenom FROM informations";
+	$result = $conn -> query($sql) ;
+					
+	while ($row = $result -> fetch_assoc())
+	{
+		if (strcmp($row['mail'] , $_POST['email']) == 0)
+		{
+			$email = 1 ;
+			
+			if (strcmp($row['mdp'] , $_POST['password']) == 0)
+			{
+				$password = 1 ;
+				$nom = $row['nom'] ;
+				$prenom = $row['prenom'] ;
+			}
+			else
+			{
+				$password = 3 ;
+			}
+		}
+		else
+		{
+			$email = 3;
+		}
+	}
+					
+}
+
+$authentification = $email + $password ;
+
+?> 
+<html> 
+
+<?php if ($authentification == 2){ 
+
+	session_start() ; 
+	
+	$_SESSION['authentification'] = $authentification ;
+	$_SESSION['nom'] = $nom ;
+	$_SESSION['prenom'] = $prenom ;
+	
+	?>
+	
+	<head/>
+		<title>connexion</title>
+		<meta charset= 'utf-8'> 
+		<link  rel="stylesheet" href="connexion.css"/>
+		<meta http-equiv="refresh" content="0; URL=acceuil.html">
+	</head>
+<?php }?>
+
 	<head/>
 		<title>connexion</title>
 		<meta charset= 'utf-8'> 
 		<link  rel="stylesheet" href="connexion.css"/>
 	</head>
 	
+
 	<body>
 		<div id = "page">
 			<header>
@@ -35,54 +89,25 @@ $password = 0 ;
 					</nav>
 				</div>
 
-			</header>		
-		
-
-
-
-		
+			</header>
 		<section> 
-			<form method ="post" <?php if (($password == 0) AND ($email == 0) {?> action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" <?php} elseif(($password == 0) AND ($email == 0)) {?> action = "acceuil.php" <?php}?>>
-	
+			<form method = "post" action = "connexion.php">
+			
 				<fieldset>
 					<legend> Veuillez renseigner les informations suivantes </legend>
-	
-	
+					
 					<label> e-mail </label><br />
 					<input type = "email" name = "email" id = "email" /><br/>
-					<?php if ($email == 0) {?><p>email invalide</p> <?php } ?>
-
+					
 					<label> mot de passe </label><br />
 					<input type = "password" name = "password" id = "password" /><br/>
-					<?php if ($password == 0) {?><p>email invalide</p> <?php } ?>
+					
 				</fieldset>
-	
-				<p> 
-				<input type="submit" value="se connecter" name="submit" /> 
-				</p>
-				
-				<?php if (isset($_POST['submit']))
-				{
-					
-					$sql = "SELECT email, mdp FROM informations";
-					$result = $conn -> query($sql) ;
-					
-					while ($row = $result -> fetch_assoc())
-					{
-						if (($row['email'] == $_POST['email']) AND ($row['mdp'] = $_POST['password']))
-						{
-							$email = 1 ;
-							$password = 1;
-						}
-					}
-					
-				}?>
-				
-				<p class = "lien_inscription"> pas encore inscrit ? <a href="formulaire_inscription.html">(Lien vers la page d'inscription)</a></p>
-	
+			
+			<p><input type="submit" value="se connecter" name="submit" /></p>
+			<p class = "lien_inscription"> pas encore inscrit ? <a href="formulaire_dinscription.html">(Lien vers la page d'inscription)</a></p>
+			<?php if ($authentification >= 3) { echo "<p>mot de passe ou email invalide</p>" ;} ?>
 			</form>
-	
-		</section>
-	
+			
 	</body>
 </html>

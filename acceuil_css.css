@@ -144,39 +144,169 @@
 
 #bodyancieneleves {
 	margin: 0px;
+	
+}
+
+#main_ancien_eleve{
+	height : 60%;
+	display:flex;
+	flex-basis: content;
 }
 
 .boutonpromotion{
-	background-color: black;
-	color: white;
-	border: none;
-	cursor: pointer;
-	padding:20px;
-	margin-top:20px;
-	font-size: 30px;
+	display: flex;
+	color : #FFFFFF;
+	
+	justify-content : space-between;	
+	font-family: 'Ubuntu', sans-serif;
+	padding-bottom : 5px;
 }
 
-.boutonpromotion:hover{
-	background-color: #ff4444;
+#titrepromo 
+{
+	margin:0px;
+	min-width:70%;
+	text-align : center;
+	font-size : 25px;
+}
+
+
+.choix_annee_promotion{
+	appearance: none;
+	outline: 0;
+	border: 0;	
+	background: #333;
+	background-image: none;
+	box-shadow: none;
+	font-size: 25px;
+	font-family: 'Ubuntu', sans-serif;
+ 
+}
+.annee_promotion {
+	position: relative;
+	overflow: hidden;
+
+}
+.choix_annee_promotion{
+	margin: 0;
+	color: #FFFFFF;
+	cursor: pointer;
+ 
+}
+
+.annee_promotion::after {
+  content: '\276F';
+  position: absolute;
+  top: 7%;
+  right: 0;
+  padding-right:2px;
+  pointer-events: none;
+  transform: rotate(90deg);
+  font-size: 1em;
+  background: #333;
+} 
+
+.annee_promotion:hover::after {
+  color: #FA6141;
 }
 
 #navpromotion {
+	margin-top : 30px;
+	margin-left : 10px;
+	margin-bottom : 30px;
+	width : 260px;
+	background: #333;
+	font-family: 'Ubuntu', sans-serif;
 
-	background-color : red;
-	display: inline-block;
 }
-#navpromotion-child  {
-display: none;
-background-color: #f28c8c;
-min-width: 50px;
-}
+
 #navpromotion-child  a {
-color: white;
-padding: 20px;
-text-decoration: none;
-display: block;
+	display: block;
+	padding: 10px;
+	text-align : center;
+	margin-bottom: 2px;
+	text-decoration: none;
+	color : #FFFFFF;
+	background: rgba(255,255,255, 0.1);
 }
-#navpromotion:hover #navpromotion-child {
-display: block;
+
+#navpromotion-child  a:hover {
+	background-color: #E7E7E7;
+	color : #000000;
+}
+
+/*Tableau---------------------------------------------------------------*/
+#section_tableau {
+
+	align-self : center;
+	margin-left : 10%;
+	max-width :100%;
+}
+
+#tableau {
+	border: medium solid rgba(52,92,153);
+	border-collapse: collapse;
+	min-width :100%;
+}
+
+#tableau th {
+	font-family: monospace;
+	font-family: 'Ubuntu', sans-serif;
+	color : #ffffff;
+	font-size :18;
+	padding: 5px;
+	background: linear-gradient(rgba(52,92,153,1), rgba(52,92,153,1));
+}
+#tableau td {
+		
+	border: thin solid #E1E1E1;
+	padding: 5px;
+	text-align: center;
+	background-color: #ffffff;
+}
+
+#userText{
+	margin-bottom :0;
+	font-family: 'Vollkorn', sans-serif;
+}
+
+#deletCursus {
+	display :flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+#userCursus{
+	color : #D71919;
+	font-weight:bold;	
+}
+
+#FDeletCursus{
+	display :flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#titlepromo{
+	
+	font-family: 'Ubuntu', sans-serif;
+	margin-bottom : 0;
+	margin-top :0;
+}
+
+#titlecursus{
+
+	font-family: 'Ubuntu', sans-serif;
+	margin-bottom : 0;
+	margin-top :0;
+}
+
+#cursusBoxInsert{
+	display:flex;
+	justify-content: space-between;
+	align-items:flex-end;
+}
+#sendMaj{
+	max-height : 22px;
 }
 

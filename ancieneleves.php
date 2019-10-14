@@ -9,6 +9,20 @@ catch (Exception $e){
 }
 
 session_start();
+/*Vérification de l'ouverture de session*/
+if(isset($_SESSION['open'])) {
+	$connec =1;
+} 							
+else {
+	$connec=1;
+}
+/*Récupération des variables de session*/
+/*$nom = $_SESSION['nom'];
+$prenom = $_SESSION['prenom'];
+$cursust = $_SESSION['cursus'];
+$promo = $_SESSION['promotion'];
+$mail = $_SESSION['mail'];
+*/
 $nom="tes";
 $prenom="test";
 $cursust="méca tro";
@@ -184,13 +198,7 @@ if(isset($_POST['clic'])){
 					?>
 					
 					<?php 
-					if(!$_SESSION) {
-						$connec =1;
-
-					} 							
-					else {
-						$connec=1;
-					}
+					
 					
 					?>
 					

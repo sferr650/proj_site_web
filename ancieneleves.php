@@ -14,6 +14,7 @@ try{
 	$BDDTable = "ancien_eleve1";
 	$BDDmail = 'mail';
 	$BDDnom = 'Nom';
+	
 	$BDDprenom = "Prénom";
 	$BDDpromo = "Promotion";
 	$BDDcursus = "cursus";
@@ -81,7 +82,8 @@ else {
 /*Suppression de la valeur cursus si l'utilisateur clique sur le bouton*/
 if(isset($_POST['clic'])){
 	$mail ="pouet@ens.fr";								
-	$sql = "UPDATE ".$BDDTable." SET ".$newCursus." = NULL WHERE ".$BDDmail."= '".$mail."'";
+	$sql = "UPDATE ".$BDDTable." SET ".$BDDcursus." = NULL WHERE ".$BDDmail."= '".$mail."'";
+	$_SESSION['cursus'] = NULL;
 	$stmt = $bdd->prepare($sql);
 	$stmt->execute();
 }					
@@ -186,11 +188,11 @@ if(isset($_POST['clic'])){
 								// DONNEES A AFFICHER dans chaque cellule de la ligne
 						?>
 								<tr>
-									<td><?=$row['Nom']?></td>
-									<td><?php echo $row['Prénom']; ?></td>
-									<td><?php echo $row['Promotion']; ?></td>
-									<td><?php echo $row['mail']; ?></td>
-									<td><?php echo $row['cursus']; ?></td>
+									<td><?=$row[$BDDnom]?></td>
+									<td><?=$row[$BDDprenom]?></td>
+									<td><?=$row[$BDDpromo]?></td>
+									<td><?=$row[$BDDmail]?></td>
+									<td><?=$row[$BDDcursus]?></td>
 									
 								</tr>
 									<?php

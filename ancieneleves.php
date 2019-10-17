@@ -2,32 +2,41 @@
 <?php
 /*Connection BDD*/
 try{
-	$bdd = new PDO('mysql:host=localhost;dbname=ancien_eleves;charset=utf8', 'root', '!jBEuKe8');
+	/*variable de bdd*/
+	$localhostBdd = 'mysql:host=localhost;dbname=ancien_eleves;charset=utf8';
+	$rootAccount = 'root';
+	$rootMdp = "!jBEuKe8";
+	
+	$bdd = new PDO($localhostBdd,$rootAccount, $rootMdp);
+	
+	
+	/*colonne de la bdd*/
+	$BDDTable = "ancien_eleve1";
+	$BDDmail = 'mail';
+	$BDDnom = 'Nom';
+	$BDDprenom = "Prénom";
+	$BDDpromo = "Promotion";
+	$BDDcursus = "cursus";
 }
 catch (Exception $e){
 	die('Erreur : '.$e->getMessage());
 }
-
+$connec=0;
 session_start();
+
 /*Vérification de l'ouverture de session*/
 if(isset($_SESSION['open'])) {
 	$connec =1;
-} 							
-else {
-	$connec=1;
+	/*Récupération des variables de session*/
+	$nom = $_SESSION['nom'];
+	$prenom = $_SESSION['prenom'];
+	$cursust = $_SESSION['cursus'];
+	$promot = $_SESSION['promo'];
+	$mail = $_SESSION['mail'];
+}						
+else{
+	$connec=0;
 }
-/*Récupération des variables de session*/
-/*$nom = $_SESSION['nom'];
-$prenom = $_SESSION['prenom'];
-$cursust = $_SESSION['cursus'];
-$promo = $_SESSION['promotion'];
-$mail = $_SESSION['mail'];
-*/
-$nom="tes";
-$prenom="test";
-$cursust="méca tro";
-$promo=2016;
-$mail="pouet@ens.fr";
 
 /*Gestion de la liste déroulante des années de promotion*/
 $cap=2019;
@@ -44,13 +53,13 @@ if(!empty($_POST['année_promo'])){
 	
 	switch (!empty($_POST['cursus'])){
 		case 0 :
-			$sql = "UPDATE ancien_eleve1 SET Promotion = ".$newPromo." WHERE mail= '".$mail."'";
+			$sql = "UPDATE ".$BDDTable." SET ".$BDDpromo." = ".$newPromo." WHERE ".$BDDmail."= '".$mail."'";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute();
 			break;
 		case 1 :
 			$newCursus = htmlspecialchars($_POST['cursus']);
-			$sql = "UPDATE ancien_eleve1 SET Promotion = ".$newPromo.",cursus = '".$newCursus."'  WHERE mail= '".$mail."'";
+			$sql = "UPDATE ".$BDDTable." SET ".$BDDpromo." = ".$newPromo.", ".$BDDcursus." = '".$newCursus."'  WHERE ".$BDDmail."= '".$mail."'";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute();
 			break;			
@@ -62,7 +71,7 @@ else {
 			break;
 		case 1 :
 			$newCursus = htmlspecialchars($_POST['cursus']);
-			$sql = "UPDATE ancien_eleve1 SET cursus = '".$newCursus."' WHERE mail= '".$mail."'";
+			$sql = "UPDATE ".$BDDTable." SET ".$BDDcursus." = '".$newCursus."' WHERE ".$BDDmail." = '".$mail."'";
 			$stmt = $bdd->prepare($sql);
 			$stmt->execute();
 			break;
@@ -72,10 +81,9 @@ else {
 /*Suppression de la valeur cursus si l'utilisateur clique sur le bouton*/
 if(isset($_POST['clic'])){
 	$mail ="pouet@ens.fr";								
-	$sql = "UPDATE ancien_eleve1 SET Cursus = NULL WHERE mail= '".$mail."'";
+	$sql = "UPDATE ".$BDDTable." SET ".$newCursus." = NULL WHERE ".$BDDmail."= '".$mail."'";
 	$stmt = $bdd->prepare($sql);
-	$stmt->execute();	
-	echo "niquer";
+	$stmt->execute();
 }					
 ?>
 
@@ -94,7 +102,7 @@ if(isset($_POST['clic'])){
 		<header>
 			<div id="bandeau_du_haut">
 				<ul id="connexion_inscription">
-					<li><a class = "texte_bandeau" href="connexion.php">Connexion</a></li>
+					<li><a class = "texte_bandeau" href="connexion.php"><?php if($connec == 0){echo 'Connexion';}else{echo 'Deconnexion';}?></a></li>
 					<li><a class = "texte_bandeau" href="#">Inscription</a></li>
 				</ul>
 			</div>
@@ -103,7 +111,7 @@ if(isset($_POST['clic'])){
 					<a href="acceuil.html"><img class ="logo" src ="ENS_logo.png" alt ="logo header"/></a>
 				<nav id = "menu" >
 					<ul>
-						<li><a class = "texte_bandeau" href="acceuil.html">Acceuil</a></li>
+						<li><a class = "texte_bandeau" href="acceuil.php">Acceuil</a></li>
 						<li><a class = "texte_bandeau" href="ancieneleves.php">Anciens élèves</a></li>
 					</ul>
 				</nav>
@@ -120,7 +128,7 @@ if(isset($_POST['clic'])){
 							<select class="choix_annee_promotion" name='cap' onChange="this.form.submit();">
 								
 								<?php
-								for ($a = 1950; $a <= 2019; $a++)
+								for ($a = 1994; $a <= 2019; $a++)
 								{?>
 									<option value="<?=$a?>" <?php if($cap == $a){echo 'selected="selected"';}?>><?=$a?></option>;
 								<?php	
@@ -149,7 +157,7 @@ if(isset($_POST['clic'])){
 					
 					$compt=0;
 					
-					$sql = "SELECT * FROM ancien_eleve1 WHERE Promotion = ".$cap."";
+					$sql = "SELECT * FROM ".$BDDTable." WHERE ".$BDDpromo." = ".$cap."";
 					$result = $bdd->prepare($sql);
 					$result->execute();
 					
@@ -203,7 +211,7 @@ if(isset($_POST['clic'])){
 					?>
 					
 				<div <?php if($connec == 0){echo 'style="display:none"';}?> id='modificationcursus'>
-					<p id="userText">Bonjour, <?=$prenom?> <?=$nom?> de la promotion <?=$promo?>, voici votre cursus :</p>
+					<p id="userText">Bonjour, <?=$prenom?> <?=$nom?> de la promotion <?=$promot?>, voici votre cursus :</p>
 					<div id="deletCursus">
 						<p id="userCursus"><?=$cursust?></p>
 						<form action="ancieneleves.php" method="post" id="FDeletCursus">

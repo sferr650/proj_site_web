@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.8.5
+- https://www.phpmyadmin.net
+-
+- Hôte : 127.0.0.1:3306
+- Généré le :  mar. 29 oct. 2019 à 13:50
+- Version du serveur :  5.7.26
+- Version de PHP :  7.2.18
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="ens_eleves" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="cursus">
+                CREATE TABLE `cursus` (
+                  `cursus` text,
+                  `promotion` int(11) DEFAULT NULL,
+                  `mail` text
+                ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="eleves">
+                CREATE TABLE `eleves` (
+                  `mail` text NOT NULL,
+                  `nom` varchar(30) DEFAULT NULL,
+                  `prenom` varchar(30) DEFAULT NULL,
+                  `pwd` text,
+                  PRIMARY KEY (`mail`(100))
+                ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Base de données :  'ens_eleves'
+    -->
+    <database name="ens_eleves">
+        <!-- Table cursus -->
+        <table name="cursus">
+            <column name="cursus">mécatro</column>
+            <column name="promotion">2016</column>
+            <column name="mail">NULL</column>
+        </table>
+        <table name="cursus">
+            <column name="cursus">elec</column>
+            <column name="promotion">2018</column>
+            <column name="mail">jean@ens.fr</column>
+        </table>
+        <table name="cursus">
+            <column name="cursus">these elec</column>
+            <column name="promotion">2019</column>
+            <column name="mail">jean@ens.fr</column>
+        </table>
+        <table name="cursus">
+            <column name="cursus">these meca</column>
+            <column name="promotion">2017</column>
+            <column name="mail">test@ens.fr</column>
+        </table>
+        <table name="cursus">
+            <column name="cursus">meca</column>
+            <column name="promotion">2016</column>
+            <column name="mail">test@ens.fr</column>
+        </table>
+        <table name="cursus">
+            <column name="cursus">info</column>
+            <column name="promotion">2019</column>
+            <column name="mail">pwet@ens.fr</column>
+        </table>
+        <table name="cursus">
+            <column name="cursus">méca tro</column>
+            <column name="promotion">2016</column>
+            <column name="mail">pwet@ens.fr</column>
+        </table>
+        <!-- Table eleves -->
+        <table name="eleves">
+            <column name="mail">jean@ens.fr</column>
+            <column name="nom">michel</column>
+            <column name="prenom">jean</column>
+            <column name="pwd">motdepasse</column>
+        </table>
+        <table name="eleves">
+            <column name="mail">jeanmarc@ens.fr</column>
+            <column name="nom">marc</column>
+            <column name="prenom">jean</column>
+            <column name="pwd">motdepasse</column>
+        </table>
+        <table name="eleves">
+            <column name="mail">pwet@ens.fr</column>
+            <column name="nom">pwet</column>
+            <column name="prenom">test</column>
+            <column name="pwd">motdepasse</column>
+        </table>
+        <table name="eleves">
+            <column name="mail">test@ens.fr</column>
+            <column name="nom">test</column>
+            <column name="prenom">pwet</column>
+            <column name="pwd">motdepasse</column>
+        </table>
+    </database>
+</pma_xml_export>

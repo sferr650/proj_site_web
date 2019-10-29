@@ -45,6 +45,12 @@
 	font-size : 20px;
 }
 
+.nom_session
+{
+	font-style: italic;
+	font-color : #FF819F;
+}
+
 #menu a
 {
 	text-decoration: none ;
@@ -98,8 +104,9 @@
 	margin: 0%;
 	min-width : 100%;
 	min-height : 100px;
+	bottom : 0px;
 }
-#footer p {
+#footerTexte {
 	padding: 0px;
 	margin : 0px;
 	color : white;
@@ -144,7 +151,6 @@
 
 #bodyancieneleves {
 	margin: 0px;
-	
 }
 
 #main_ancien_eleve{
@@ -264,6 +270,7 @@
 	text-align: center;
 	background-color: #ffffff;
 }
+/*Fin tableau-----------------------------------------------------------*/
 
 #userText{
 	margin-bottom :0;
@@ -281,11 +288,11 @@
 	font-weight:bold;	
 }
 
-#FDeletCursus{
+/*#FDeletCursus{
 	display :flex;
 	justify-content: center;
 	align-items: center;
-}
+}*/
 
 #titlepromo{
 	
@@ -308,5 +315,8 @@
 }
 #sendMaj{
 	max-height : 22px;
+}
+#errorMessage{
+	font-color : red;
 }
 

@@ -1,8 +1,34 @@
 <?php 
 
-$conn = new mysqli ("localhost" , "root" , "", "informations");
-if ($conn -> connect_error) {
-	die ("Connexion failed: " . $conn -> connect_error);
+try{
+	/*variable de bdd*/
+	$localhostBdd = 'mysql:host=localhost;dbname=ens_eleves;charset=utf8';
+	$rootAccount = 'root';
+	$rootMdp = "!jBEuKe8";
+	
+	$conn = new PDO($localhostBdd,$rootAccount, $rootMdp);
+	
+	
+	/*colonne de la bdd*/
+	$BDDTable1 = "eleves";
+	$BDDTable2 = "cursus";
+	
+	$BDDmail = 'mail';
+	$BDDnom = 'nom';
+	$BDDmdp = "pwd";
+	$BDDprenom = "prenom";
+	$BDDpromo = "promotion";
+	$BDDcursus = "cursus";
+}
+catch (Exception $e){
+	die('Erreur : '.$e->getMessage());
+}
+session_start() ;
+/*Fermeture de session*/
+if(isset($_SESSION['open'])){
+	$_SESSION['open'] =0;
+	session_destroy();
+	
 }
 
 $email = 0 ;
@@ -11,20 +37,24 @@ $password = 0;
 if (isset($_POST['submit']))
 {
 	
-	$sql = "SELECT mail , mdp , nom , prenom FROM informations";
-	$result = $conn -> query($sql) ;
+	$sql = "SELECT ".$BDDmail." , ".$BDDmdp.", ".$BDDnom.",".$BDDprenom." FROM ".$BDDTable1."";
+	$result = $conn->query($sql);	
+	$rowt = $result->fetchAll();
+	$NbreData = $result->rowCount();
 					
-	while ($row = $result -> fetch_assoc())
+	foreach ($rowt as $row)
 	{
-		if (strcmp($row['mail'] , $_POST['email']) == 0)
+		if (strcmp($row[$BDDmail] , $_POST['email']) == 0)
 		{
 			$email = 1 ;
-			
-			if (strcmp($row['mdp'] , $_POST['password']) == 0)
+					
+			if (strcmp($row[$BDDmdp] , $_POST['password']) == 0)
 			{
 				$password = 1 ;
-				$nom = $row['nom'] ;
-				$prenom = $row['prenom'] ;
+				$nom = $row[$BDDnom] ;
+				$prenom = $row[$BDDprenom] ;
+				$mail = $row[$BDDmail];
+				break;
 			}
 			else
 			{
@@ -36,21 +66,20 @@ if (isset($_POST['submit']))
 			$email = 3;
 		}
 	}
-					
 }
 
 $authentification = $email + $password ;
+print $authentification;
 
 ?> 
 <html> 
 
-<?php if ($authentification == 2){ 
-
-	session_start() ; 
+<?php if ($authentification == 2){  
 	
-	$_SESSION['authentification'] = $authentification ;
 	$_SESSION['nom'] = $nom ;
 	$_SESSION['prenom'] = $prenom ;
+	$_SESSION['mail'] = $mail;
+	$_SESSION['open'] = 1;
 	
 	?>
 	
@@ -58,7 +87,7 @@ $authentification = $email + $password ;
 		<title>connexion</title>
 		<meta charset= 'utf-8'> 
 		<link  rel="stylesheet" href="connexion.css"/>
-		<meta http-equiv="refresh" content="0; URL=acceuil.html">
+		<meta http-equiv="refresh" content="0; URL=acceuil.php">
 	</head>
 <?php }?>
 
@@ -74,8 +103,8 @@ $authentification = $email + $password ;
 			<header>
 				<div id="bandeau_du_haut">
 					<ul id="connexion_inscription">
-						<li><a class = "texte_bandeau" href="#">Connexion</a></li>
-						<li><a class = "texte_bandeau" href="#">Inscription</a></li>
+							<li><a class = "texte_bandeau" href="connexion.php" name="deco">Connexion</a></li>
+							<li><a class = "texte_bandeau" href="inscription.php">Inscription</a></li>
 					</ul>
 				</div>
 				
@@ -83,8 +112,8 @@ $authentification = $email + $password ;
 						<a href="acceuil.html"><img class ="logo" src ="ENS_logo.png" alt ="logo header"/></a>
 					<nav id = "menu" >
 						<ul>
-							<li><a class = "texte_bandeau" href="#">Acceuil</a></li>
-							<li><a class = "texte_bandeau" href="#">Anciens élèves</a></li>
+							<li><a class = "texte_bandeau" href="acceuil.php">Acceuil</a></li>
+							<li><a class = "texte_bandeau" href="ancieneleves.php">Anciens élèves</a></li>
 						</ul>
 					</nav>
 				</div>

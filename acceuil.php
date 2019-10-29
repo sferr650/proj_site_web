@@ -35,8 +35,17 @@ if( isset($_GET['DECO'])){
 		<header>
 				<div id="bandeau_du_haut">
 					<ul id="connexion_inscription">
-						<li><a class = "texte_bandeau" href="connexion.php" name="deco"><?php if($connec == 0){echo 'Connexion';}else{echo 'Deconnexion';}?></a></li>
-						<li><a class = "texte_bandeau" href="">Inscription</a></li>
+						<?php 
+							if($connec == 0){?>
+							<li><a class = "texte_bandeau" href="connexion.php" name="deco">Connexion</a></li>
+							<li><a class = "texte_bandeau" href="inscription.php">Inscription</a></li>
+						<?php 
+							}
+							else {
+						?>
+							<li class = "texte_bandeau" name="deco1">Hello <span class = 'nom_session'> <?=$_SESSION['nom']?></span></li> 
+							<li><a class = "texte_bandeau" href="connexion.php">Déconnexion</a></li>
+							<?php }?>
 					</ul>
 				</div>
 				

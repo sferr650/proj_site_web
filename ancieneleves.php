@@ -3,7 +3,7 @@
 /*Connection BDD*/
 try{
 	/*variable de bdd*/
-	$localhostBdd = 'mysql:host=localhost;dbname=ancien_eleves;charset=utf8';
+	$localhostBdd = 'mysql:host=localhost;dbname=ens_eleves;charset=utf8';
 	$rootAccount = 'root';
 	$rootMdp = "!jBEuKe8";
 	
@@ -11,12 +11,13 @@ try{
 	
 	
 	/*colonne de la bdd*/
-	$BDDTable = "ancien_eleve1";
-	$BDDmail = 'mail';
-	$BDDnom = 'Nom';
+	$BDDTable1 = "eleves";
+	$BDDTable2 = "cursus";
 	
-	$BDDprenom = "Prénom";
-	$BDDpromo = "Promotion";
+	$BDDmail = 'mail';
+	$BDDnom = 'nom';	
+	$BDDprenom = "prenom";
+	$BDDpromo = "promotion";
 	$BDDcursus = "cursus";
 }
 catch (Exception $e){
@@ -31,8 +32,6 @@ if(isset($_SESSION['open'])) {
 	/*Récupération des variables de session*/
 	$nom = $_SESSION['nom'];
 	$prenom = $_SESSION['prenom'];
-	$cursust = $_SESSION['cursus'];
-	$promot = $_SESSION['promo'];
 	$mail = $_SESSION['mail'];
 }						
 else{
@@ -46,47 +45,40 @@ if(isset($_GET['cap']))
 	$cap = ceil($_GET['cap']);
 }
 
-/*Modification des valeurs cursus et Promo si l'utilisateur clique sur le bouton*/							
-if(!empty($_POST['année_promo'])){
-	
-	$newPromo = htmlspecialchars($_POST['année_promo']);
-	$mail="pouet@ens.fr";
-	
-	switch (!empty($_POST['cursus'])){
-		case 0 :
-			$sql = "UPDATE ".$BDDTable." SET ".$BDDpromo." = ".$newPromo." WHERE ".$BDDmail."= '".$mail."'";
-			$stmt = $bdd->prepare($sql);
-			$stmt->execute();
-			break;
-		case 1 :
-			$newCursus = htmlspecialchars($_POST['cursus']);
-			$sql = "UPDATE ".$BDDTable." SET ".$BDDpromo." = ".$newPromo.", ".$BDDcursus." = '".$newCursus."'  WHERE ".$BDDmail."= '".$mail."'";
-			$stmt = $bdd->prepare($sql);
-			$stmt->execute();
-			break;			
+/*Modification des valeurs cursus et Promo si l'utilisateur clique sur le bouton*/
+$userValue = 0;
+if(isset($_POST['clicMode'])){						
+	if(!empty($_POST['année_promo'])){
+
+		$newPromo = htmlspecialchars($_POST['année_promo']);	
+		switch (!empty($_POST['cursus'])){
+			case 0 :
+				$userValue=1;
+				break;
+			case 1 :
+				$newCursus = htmlspecialchars($_POST['cursus']);
+				$sql = "INSERT INTO ".$BDDTable2."(".$BDDpromo.", ".$BDDcursus.",".$BDDmail.") VALUES (".$newPromo.",'".$newCursus."', '".$mail."')";
+				$stmt = $bdd->prepare($sql);
+				$stmt->execute();
+				break;			
+		}
 	}
-}
-else {
-	switch (!empty($_POST['cursus'])){
-		case 0 :
-			break;
-		case 1 :
-			$newCursus = htmlspecialchars($_POST['cursus']);
-			$sql = "UPDATE ".$BDDTable." SET ".$BDDcursus." = '".$newCursus."' WHERE ".$BDDmail." = '".$mail."'";
-			$stmt = $bdd->prepare($sql);
-			$stmt->execute();
-			break;
+	else {
+		$userValue=1;
 	}
 }
 
 /*Suppression de la valeur cursus si l'utilisateur clique sur le bouton*/
 if(isset($_POST['clic'])){
-	$mail ="pouet@ens.fr";								
-	$sql = "UPDATE ".$BDDTable." SET ".$BDDcursus." = NULL WHERE ".$BDDmail."= '".$mail."'";
-	$_SESSION['cursus'] = NULL;
-	$stmt = $bdd->prepare($sql);
-	$stmt->execute();
-}					
+	if(isset($_POST['choix'])){
+		foreach ( $_POST['choix'] as $row ) {
+			$sql = " DELETE FROM ".$BDDTable2." WHERE ".$BDDmail."='".$mail."' AND ".$BDDcursus."='".$rowCursus[$row][2]."'";
+			$stmt = $bdd->prepare($sql);
+			$stmt->execute();
+		}
+	}
+}	
+				
 ?>
 
 <html>
@@ -104,9 +96,18 @@ if(isset($_POST['clic'])){
 		<header>
 			<div id="bandeau_du_haut">
 				<ul id="connexion_inscription">
-					<li><a class = "texte_bandeau" href="connexion.php"><?php if($connec == 0){echo 'Connexion';}else{echo 'Deconnexion';}?></a></li>
-					<li><a class = "texte_bandeau" href="#">Inscription</a></li>
-				</ul>
+						<?php 
+							if($connec == 0){?>
+							<li><a class = "texte_bandeau" href="connexion.php" name="deco">Connexion</a></li>
+							<li><a class = "texte_bandeau" href="inscription.php">Inscription</a></li>
+						<?php 
+							}
+							else {
+						?>
+							<li class = "texte_bandeau" name="deco1">Hello <span class = 'nom_session'> <?=$_SESSION['nom']?></span></li> 
+							<li><a class = "texte_bandeau" href="connexion.php">Déconnexion</a></li>
+							<?php }?>
+					</ul>
 			</div>
 			
 			<div id="bandeau_du_bas">
@@ -158,8 +159,7 @@ if(isset($_POST['clic'])){
 					$entetetab = array('Nom','Prénom','Promotion','Mail','Cursus');
 					
 					$compt=0;
-					
-					$sql = "SELECT * FROM ".$BDDTable." WHERE ".$BDDpromo." = ".$cap."";
+					$sql = "SELECT eleves.mail, eleves.nom, eleves.prenom, cursus.cursus, cursus.promotion FROM eleves LEFT JOIN cursus ON eleves.mail = cursus.mail WHERE ".$BDDpromo." = ".$cap."";
 					$result = $bdd->prepare($sql);
 					$result->execute();
 					
@@ -207,20 +207,44 @@ if(isset($_POST['clic'])){
 					}
 					?>
 					
-					<?php 
-					
-					
-					?>
-					
 				<div <?php if($connec == 0){echo 'style="display:none"';}?> id='modificationcursus'>
-					<p id="userText">Bonjour, <?=$prenom?> <?=$nom?> de la promotion <?=$promot?>, voici votre cursus :</p>
+					<p id="userText">Bonjour, <?=$prenom?> <?=$nom?> , voici votre cursus :</p>
+					<!--Formulaire pour supprimer les cursus-->
 					<div id="deletCursus">
-						<p id="userCursus"><?=$cursust?></p>
+						<?php
+						/*Préparation de l'affichage des cursus de l'utilisateur*/
+							if ($connec == 1){
+								$cursusSql = "SELECT ".$BDDmail." , ".$BDDpromo.", ".$BDDcursus." FROM ".$BDDTable2." WHERE ".$BDDmail."= '".$mail."'";
+								$CursusStmt = $bdd->prepare($cursusSql);
+								$CursusStmt->execute();
+								
+								$NbrCursus = $CursusStmt->rowCount();
+								$rowCursus = $CursusStmt->fetchAll();
+							}
+							if ($NbrCursus == 0) {
+						?>
+						<p> Vous n'avez pas renseigné votre parcours universitaire <br> </p>
+							<?php } ?>
+							
 						<form action="ancieneleves.php" method="post" id="FDeletCursus">
+							
+							<?php
+								if ($NbrCursus >0) 
+								{
+									$a=0;
+									
+									foreach ( $rowCursus as $row ) {
+							?>
+								<input type="checkbox" name="choix[]" value=<?=$a?>> <?=$row[$BDDcursus]?> en <?=$row[$BDDpromo]?><br>
+							<?php
+								$a++;
+									}
+								}
+							?>
 							<input type="submit" name="clic" value="Supprimer" id="BDeletCursus"/>
 						</form>	
 					</div>
-					
+					<!--Formulaire pour modifier les cursus-->
 					<form action="ancieneleves.php" method="post" id="cursusBoxInsert">
 						<div id="promo">
 							<p id='titlepromo'> Promotion </p>
@@ -232,15 +256,22 @@ if(isset($_POST['clic'])){
 							<input type="text" name="cursus" id="cursus" />
 						</div>
 						
-						<input type="submit" value="Ajouter" id="sendMaj" />
-						
+						<input type="submit" value="Ajouter" id="sendMaj" name="clicMode" />
 					</form>
+					<?php 
+						if($userValue==1){
+							?>
+							<p id='errorMessage'> Erreur : Veuillez renseigner les DEUX champs indiqués ci-dessus </p>
+						<?php
+						}?>
 				</div>
 			</div>
 		</div>
 
 		<footer id="footer">
-			<p> pied de page </p>	
+			<div id="foot_texte">
+				<p id='footerTexte'> Pour nous contacter : ancien_Eleves@ens.fr </p>	
+			</div>
 	</footer>
 	
 	</body>

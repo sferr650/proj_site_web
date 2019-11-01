@@ -48,12 +48,13 @@ if (isset($_POST['submit']))
 		{
 			$email = 1 ;
 					
-			if (strcmp($row[$BDDmdp] , $_POST['password']) == 0)
+			if ( password_verify($_POST['password'], $row[$BDDmdp]) )
 			{
 				$password = 1 ;
 				$nom = $row[$BDDnom] ;
 				$prenom = $row[$BDDprenom] ;
 				$mail = $row[$BDDmail];
+				echo "mot de passe valide";
 				break;
 			}
 			else

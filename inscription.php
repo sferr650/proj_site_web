@@ -1,8 +1,28 @@
 <?php 
 session_start() ;
-$conn = new mysqli ("localhost" , "root" , "", "informations");
-if ($conn -> connect_error) {
-	die ("Connexion failed: " . $conn -> connect_error);
+/*Connection BDD*/
+try{
+	/*variable de bdd*/
+	$localhostBdd = 'mysql:host=localhost;dbname=ens_eleves;charset=utf8';
+	$rootAccount = 'root';
+	$rootMdp = "!jBEuKe8";
+	
+	$conn = new PDO($localhostBdd,$rootAccount, $rootMdp);
+	
+	
+	/*colonne de la bdd*/
+	$BDDTable1 = "eleves";
+	$BDDTable2 = "cursus";
+	
+	$BDDmail = 'mail';
+	$BDDnom = 'nom';
+	$BDDmdp = "pwd";
+	$BDDprenom = "prenom";
+	$BDDpromo = "promotion";
+	$BDDcursus = "cursus";
+}
+catch (Exception $e){
+	die('Erreur : '.$e->getMessage());
 }
 
 if (isset($_POST['submit']))
@@ -12,9 +32,13 @@ $nom = htmlspecialchars($_POST['nom']) ;
 $prenom = htmlspecialchars($_POST['prenom']) ;
 $promotion = htmlspecialchars($_POST['promotion']) ;
 $email = htmlspecialchars($_POST['email']) ;
-$password = htmlspecialchars($_POST['password']) ;
 
-$sql = "INSERT INTO informations (nom , prenom,promotion,mail,mdp) VALUE ('".$nom."','".$prenom."',".$promotion.",'".$email."','".$password."')";
+/*hachage du mot de passe*/
+$password = htmlspecialchars($_POST['password']) ;
+$passwordHash = password_hash($password,PASSWORD_BCRYPT);
+
+/*Enregistrement de l'utilisateur dans la BDD*/
+$sql = "INSERT INTO ".$BDDTable1." (".$BDDnom.", ".$BDDprenom.", ".$BDDmail.", ".$BDDmdp.") VALUE ('".$nom."','".$prenom."','".$email."','".$passwordHash."')";
 $req = $conn -> prepare($sql);
 $req->execute();
 
@@ -53,8 +77,8 @@ $req->execute();
 	
 	<section>
 	
-	<form method = "post" action = "acceuil.php">
-		
+	<!--<form method = "post" action = "acceuil.php">-->
+	<form method = "post" action = "">
 		<fieldset>
 			<legend> Veuillez renseigner les informations suivantes </legend>
 		

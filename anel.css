@@ -1,0 +1,323 @@
+/*navigation barre------------------Début---------------------------------*/
+.header
+{
+	position: fixed ;
+	right : 0; left:0 ; top:0;
+}
+
+#bandeau_du_bas
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center ;
+	background-color: #534e4e;
+	box-shadow: 6px 6px 6px black inset;
+	z-index:1;
+	height: 60px;
+}
+
+
+.logo:hover
+{
+	border-style:solid;
+	border-width:2px ;
+	border-color: black;
+	box-shadow: 10px 5px 20px black ;
+	padding:0px;
+}
+
+.logo
+{
+	width: 60px;
+	height:60px;
+	z-index: 2;
+}
+
+#menu ul 
+{
+	list-style-type: none ;
+	display: flex;
+}
+
+#menu  li
+{
+	margin-right: 50px;
+	font-size : 20px;
+}
+
+.nom_session
+{
+	font-style: italic;
+	font-color : #FF819F;
+}
+
+#menu a
+{
+	text-decoration: none ;
+}
+
+#menu a:hover
+{
+	text-decoration : underline;
+}
+
+
+/*style pour le bandeau du haut*/
+
+#bandeau_du_haut
+{
+	background-color: #858484;
+	display: flex;
+	justify-content: flex-end;
+	align-items : center;
+	height: 40px;
+}
+
+#connexion_inscription
+{
+	display : flex ;
+}
+
+#connexion_inscription li
+{
+	font-size : 20px;
+	margin-right: 50px;
+	list-style-type: none ;
+}
+
+#connexion_inscription li a:hover
+{
+	text-decoration : underline;
+}
+
+.texte_bandeau
+{
+	text-decoration: none ;
+	color: white;
+	font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+/*navigation barre------------------Fin---------------------------------*/
+
+/*Footer----------------------------Début-----------------------------*/
+#footer{
+	background-color : #000000;
+	margin: 0%;
+	min-width : 100%;
+	min-height : 100px;
+	bottom : 0px;
+}
+#footerTexte {
+	color : white;
+}
+#navFooter ul {
+	list-style-type: none ;
+}
+
+/*Footer----------------------------Fin-----------------------------*/
+
+/*Page d'acceuil, main part---------Début-------------------------------*/
+
+#bodyacceuil {
+	margin: 0px;
+}
+#imagebackground{
+	
+	/*chargement et ajustement de la taille est opacité de l'image*/
+	background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(ENS-REnnes_dev.jpg);
+	background-repeat:no-repeat;
+	background-size: 100% 100%;
+	
+	
+	/*ajustement de la taille de la div*/
+	width: 100%;
+    height: 0;
+    margin: 0;
+    padding-bottom: 50%;
+}
+
+#imagebackground p {
+	
+	margin: 0;
+	padding-top : 25%;
+	text-align : center;
+	
+	color :#FFFFFF;
+	font-family: 'Ubuntu', sans-serif;
+	font-size :40;
+	font-style : italic;
+}
+/*Page d'acceuil, main part---------Fin-------------------------------*/
+
+/*Page ancien élèves----------------Début-----------------------------*/
+
+#bodyancieneleves {
+	margin: 0px;
+}
+
+#main_ancien_eleve{
+	height : 60%;
+	display:flex;
+	flex-basis: content;
+}
+
+.boutonpromotion{
+	display: flex;
+	color : #FFFFFF;
+	
+	justify-content : space-between;	
+	font-family: 'Ubuntu', sans-serif;
+	padding-bottom : 5px;
+}
+
+#titrepromo 
+{
+	margin:0px;
+	min-width:70%;
+	text-align : center;
+	font-size : 25px;
+}
+
+
+.choix_annee_promotion{
+	appearance: none;
+	outline: 0;
+	border: 0;	
+	background: #333;
+	background-image: none;
+	box-shadow: none;
+	font-size: 25px;
+	font-family: 'Ubuntu', sans-serif;
+ 
+}
+.annee_promotion {
+	position: relative;
+	overflow: hidden;
+
+}
+.choix_annee_promotion{
+	margin: 0;
+	color: #FFFFFF;
+	cursor: pointer;
+ 
+}
+
+.annee_promotion::after {
+  content: '\276F';
+  position: absolute;
+  top: 7%;
+  right: 0;
+  padding-right:2px;
+  pointer-events: none;
+  transform: rotate(90deg);
+  font-size: 1em;
+  background: #333;
+} 
+
+.annee_promotion:hover::after {
+  color: #FA6141;
+}
+
+#navpromotion {
+	margin-top : 30px;
+	margin-left : 10px;
+	margin-bottom : 30px;
+	width : 260px;
+	background: #333;
+	font-family: 'Ubuntu', sans-serif;
+
+}
+
+#navpromotion-child  a {
+	display: block;
+	padding: 10px;
+	text-align : center;
+	margin-bottom: 2px;
+	text-decoration: none;
+	color : #FFFFFF;
+	background: rgba(255,255,255, 0.1);
+}
+
+#navpromotion-child  a:hover {
+	background-color: #E7E7E7;
+	color : #000000;
+}
+
+/*Tableau---------------------------------------------------------------*/
+#section_tableau {
+
+	align-self : center;
+	margin-left : 10%;
+	max-width :100%;
+}
+
+#tableau {
+	border: medium solid rgba(52,92,153);
+	border-collapse: collapse;
+	min-width :100%;
+}
+
+#tableau th {
+	font-family: monospace;
+	font-family: 'Ubuntu', sans-serif;
+	color : #ffffff;
+	font-size :18;
+	padding: 5px;
+	background: linear-gradient(rgba(52,92,153,1), rgba(52,92,153,1));
+}
+#tableau td {
+		
+	border: thin solid #E1E1E1;
+	padding: 5px;
+	text-align: center;
+	background-color: #ffffff;
+}
+/*Fin tableau-----------------------------------------------------------*/
+
+#userText{
+	margin-bottom :0;
+	font-family: 'Vollkorn', sans-serif;
+}
+
+#deletCursus {
+	display :flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+#userCursus{
+	color : #D71919;
+	font-weight:bold;	
+}
+
+/*#FDeletCursus{
+	display :flex;
+	justify-content: center;
+	align-items: center;
+}*/
+
+#titlepromo{
+	
+	font-family: 'Ubuntu', sans-serif;
+	margin-bottom : 0;
+	margin-top :0;
+}
+
+#titlecursus{
+
+	font-family: 'Ubuntu', sans-serif;
+	margin-bottom : 0;
+	margin-top :0;
+}
+
+#cursusBoxInsert{
+	display:flex;
+	justify-content: space-between;
+	align-items:flex-end;
+}
+#sendMaj{
+	max-height : 22px;
+}
+#errorMessage{
+	font-color : red;
+}
+

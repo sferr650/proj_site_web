@@ -15,7 +15,8 @@ try{
 	$BDDTable2 = "cursus";
 	
 	$BDDmail = 'mail';
-	$BDDnom = 'nom';	
+	$BDDnom = 'nom';
+	$BDDmdp = "pwd";
 	$BDDprenom = "prenom";
 	$BDDpromo = "promotion";
 	$BDDcursus = "cursus";
@@ -86,7 +87,7 @@ if(isset($_POST['clic'])){
 	<head>
 		<title>ens rennes</title>
 		<meta charset= 'utf-8'> 
-		<link rel="stylesheet" href="acceuil_css.css"/>
+		<link rel="stylesheet" href="anel.css"/>
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu:bold' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
 	</head>
@@ -267,13 +268,6 @@ if(isset($_POST['clic'])){
 				</div>
 			</div>
 		</div>
-
-		<footer id="footer">
-			<div id="foot_texte">
-				<p id='footerTexte'> Pour nous contacter : ancien_Eleves@ens.fr </p>	
-			</div>
-	</footer>
-	
 	</body>
 
 </html>

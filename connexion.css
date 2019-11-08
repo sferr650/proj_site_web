@@ -117,3 +117,9 @@ fieldset
 	font-family: 'Trebuchet MS', Arial, sans-serif;
 	font-weight : bold;
 }
+#errorMessage{
+	
+	color : red;
+	font-family: 'Trebuchet MS', Arial, sans-serif;
+	font-weight : bold;
+}

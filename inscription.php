@@ -25,23 +25,28 @@ catch (Exception $e){
 	die('Erreur : '.$e->getMessage());
 }
 
+$userValue = 0;
 if (isset($_POST['submit']))
 {
 
 $nom = htmlspecialchars($_POST['nom']) ;
 $prenom = htmlspecialchars($_POST['prenom']) ;
-$promotion = htmlspecialchars($_POST['promotion']) ;
 $email = htmlspecialchars($_POST['email']) ;
 
 /*hachage du mot de passe*/
-$password = htmlspecialchars($_POST['password']) ;
-$passwordHash = password_hash($password,PASSWORD_BCRYPT);
-
-/*Enregistrement de l'utilisateur dans la BDD*/
-$sql = "INSERT INTO ".$BDDTable1." (".$BDDnom.", ".$BDDprenom.", ".$BDDmail.", ".$BDDmdp.") VALUE ('".$nom."','".$prenom."','".$email."','".$passwordHash."')";
-$req = $conn -> prepare($sql);
-$req->execute();
-
+if($_POST['password'] == $_POST['passwordVerify']){
+	
+	$password = htmlspecialchars($_POST['password']) ;
+	$passwordHash = password_hash($password,PASSWORD_BCRYPT);
+	
+	/*Enregistrement de l'utilisateur dans la BDD*/
+	$sql = "INSERT INTO ".$BDDTable1." (".$BDDnom.", ".$BDDprenom.", ".$BDDmail.", ".$BDDmdp.") VALUE ('".$nom."','".$prenom."','".$email."','".$passwordHash."')";
+	$req = $conn -> prepare($sql);
+	$req->execute();
+}
+else {
+	$userValue = 1;
+}
 }
 ?>
 
@@ -71,10 +76,7 @@ $req->execute();
 						</ul>
 					</nav>
 				</div>
-
-			</header>		
-	
-	
+			</header>	
 	<section>
 	
 	<!--<form method = "post" action = "acceuil.php">-->
@@ -88,34 +90,26 @@ $req->execute();
 			<label> Votre prénom </label><br/>
 			<input type = "text" name = "prenom" id = "prenom" /><br/>
 			
-			<label> Votre promo </label><br />
-			<select class="choix_annee_promotion" name='promotion' onChange="this.form.submit();">
-			<?php
-				for ($a = 1950; $a <= 2019; $a++){
-					echo '<option value="'.$a.'"selected="selected">'.$a.'</option>';
-					if(isset($_POST['cap']))
-					{
-						$cap = ceil($_POST['cap']);
-					}
-					else {
-						$cap=2019;
-					}
-				}
-			?>		 
-			</select><br />
-			
 			<label> Votre mail </label><br />
 			<input type = "email" name = "email" id = "email" /><br/>
 			
 			<label> Votre mot de passe </label><br />
 			<input type = "password" name = "password" id = "password" /><br/>
 			
+			<label> Confirmation de votre mot de passe </label><br />
+			<input type = "password" name = "passwordVerify" id = "password" /><br/>
+			
 			<input type="submit" value="Envoyer" name ="submit"/>
 		</fieldset>
 			
 		<p class = "lien_connexion">déjà inscrit ?<a href="connexion.php">(Lien vers la page de connexion)</a></p>
+		<?php 
+			if($userValue==1){
+		?>
+		<p id='errorMessage'> Erreur : Les mots de passe renseignés sont différents </p>
+		<?php
+		}?>
 	</form>
 	</section>
-	
 	</body>
 </html>

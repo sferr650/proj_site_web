@@ -27,8 +27,7 @@ session_start() ;
 /*Fermeture de session*/
 if(isset($_SESSION['open'])){
 	$_SESSION['open'] =0;
-	session_destroy();
-	
+	session_destroy();	
 }
 
 $email = 0 ;
@@ -44,17 +43,16 @@ if (isset($_POST['submit']))
 					
 	foreach ($rowt as $row)
 	{
-		if (strcmp($row[$BDDmail] , $_POST['email']) == 0)
+		if (strcmp($row[$BDDmail] , $_POST['email']) == 0) // vérifie si le mail est dans la base de donnée
 		{
 			$email = 1 ;
 					
-			if ( password_verify($_POST['password'], $row[$BDDmdp]) )
+			if ( password_verify($_POST['password'], $row[$BDDmdp]) ) // vérifie si le H du mot de passe est identique à celui de la base de donnée 
 			{
 				$password = 1 ;
 				$nom = $row[$BDDnom] ;
 				$prenom = $row[$BDDprenom] ;
 				$mail = $row[$BDDmail];
-				echo "mot de passe valide";
 				break;
 			}
 			else
@@ -70,12 +68,11 @@ if (isset($_POST['submit']))
 }
 
 $authentification = $email + $password ;
-print $authentification;
 
 ?> 
 <html> 
 
-<?php if ($authentification == 2){  
+<?php if ($authentification == 2){ // initalisation des variables de session 
 	
 	$_SESSION['nom'] = $nom ;
 	$_SESSION['prenom'] = $prenom ;
@@ -88,7 +85,7 @@ print $authentification;
 		<title>connexion</title>
 		<meta charset= 'utf-8'> 
 		<link  rel="stylesheet" href="connexion.css"/>
-		<meta http-equiv="refresh" content="0; URL=acceuil.php">
+		<meta http-equiv="refresh" content="0; URL=acceuil.php"> <!--redirige l'utilisteur vers la page d'acceuil-->
 	</head>
 <?php }?>
 

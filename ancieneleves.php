@@ -128,6 +128,7 @@ if(isset($_POST['clic'])){
 				<div class="boutonpromotion">
 					<h4 id='titrepromo'>Promotion : </h4>
 					<div class="annee_promotion">
+					<!--Liste déroulante permettant à l'utilisateur de seletionner une année pour filter les données affichées-->
 						<form action="ancieneleves.php" method="get">
 							<select class="choix_annee_promotion" name='cap' onChange="this.form.submit();">
 								
@@ -143,8 +144,7 @@ if(isset($_POST['clic'])){
 						</form>
 					</div>
 				</div>
-				<!--Pas fini-->
-			
+			<!-- Mise à jour des années en fonction de l'année selectionnées par l'utilsiateur-->
 				<nav id="navpromotion-child">
 					<a href='ancieneleves.php?cap=<?=$cap-2?>'><?=$cap-2?></a>
 					<a href='ancieneleves.php?cap=<?=$cap-1?>'><?=$cap-1?></a>
@@ -166,7 +166,7 @@ if(isset($_POST['clic'])){
 					
 					$NbreData = $result->rowCount();
 					$rowAll = $result->fetchAll();
-					if($NbreData != 0){
+					if($NbreData != 0){ // vérifie si il a des données à afficher dans le tableau 
 				?>
 				<table id="tableau">
 					<thead>
@@ -197,7 +197,7 @@ if(isset($_POST['clic'])){
 									
 								</tr>
 									<?php
-							} // fin foreach
+							}
 						?>
 					</tbody>
 				</table>
@@ -207,7 +207,7 @@ if(isset($_POST['clic'])){
 					<?php
 					}
 					?>
-					
+					<!-- Affcihe le/les cursus de l'utilisateur uniquement si celui-ci est connecté-->
 				<div <?php if($connec == 0){echo 'style="display:none"';}?> id='modificationcursus'>
 					<p id="userText">Bonjour, <?=$prenom?> <?=$nom?> , voici votre cursus :</p>
 					<!--Formulaire pour supprimer les cursus-->
@@ -226,9 +226,8 @@ if(isset($_POST['clic'])){
 						?>
 						<p> Vous n'avez pas renseigné votre parcours universitaire <br> </p>
 							<?php } ?>
-							
-						<form action="ancieneleves.php" method="post" id="FDeletCursus">
-							
+						<!--Affiche les cursus de l'utilisateur-->	
+						<form action="ancieneleves.php" method="post" id="FDeletCursus">						
 							<?php
 								if ($NbrCursus >0) 
 								{
@@ -260,7 +259,7 @@ if(isset($_POST['clic'])){
 						<input type="submit" value="Ajouter" id="sendMaj" name="clicMode" />
 					</form>
 					<?php 
-						if($userValue==1){
+						if($userValue==1){ //Vérifie que l'utilisateur à renseigné tous les champs necessaires pour ajouter son cursus
 							?>
 							<p id='errorMessage'> Erreur : Veuillez renseigner les DEUX champs indiqués ci-dessus </p>
 						<?php

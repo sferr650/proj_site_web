@@ -79,8 +79,7 @@ else {
 			</header>	
 	<section>
 	
-	<!--<form method = "post" action = "acceuil.php">-->
-	<form method = "post" action = "">
+	<form method = "post" action = "acceuil.php">
 		<fieldset>
 			<legend> Veuillez renseigner les informations suivantes </legend>
 		

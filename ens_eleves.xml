@@ -5,7 +5,7 @@
 - https://www.phpmyadmin.net
 -
 - Hôte : 127.0.0.1:3306
-- Généré le :  mar. 29 oct. 2019 à 13:50
+- Généré le :  lun. 11 nov. 2019 à 16:13
 - Version du serveur :  5.7.26
 - Version de PHP :  7.2.18
 -->
@@ -75,30 +75,28 @@
             <column name="promotion">2016</column>
             <column name="mail">pwet@ens.fr</column>
         </table>
+        <table name="cursus">
+            <column name="cursus">Méca</column>
+            <column name="promotion">2019</column>
+            <column name="mail">pwd@ens.fr</column>
+        </table>
+        <table name="cursus">
+            <column name="cursus">info</column>
+            <column name="promotion">2020</column>
+            <column name="mail">pwd@ens.fr</column>
+        </table>
         <!-- Table eleves -->
         <table name="eleves">
-            <column name="mail">jean@ens.fr</column>
-            <column name="nom">michel</column>
-            <column name="prenom">jean</column>
-            <column name="pwd">motdepasse</column>
+            <column name="mail">pwd@ens.fr</column>
+            <column name="nom">Test</column>
+            <column name="prenom">Pwd</column>
+            <column name="pwd">$2y$10$yX1cM9e8N8Vcr4i/yGMkC.fqvwxYJBw5d9UUIEdSej46Gijfta0sy</column>
         </table>
         <table name="eleves">
-            <column name="mail">jeanmarc@ens.fr</column>
-            <column name="nom">marc</column>
-            <column name="prenom">jean</column>
-            <column name="pwd">motdepasse</column>
-        </table>
-        <table name="eleves">
-            <column name="mail">pwet@ens.fr</column>
-            <column name="nom">pwet</column>
-            <column name="prenom">test</column>
-            <column name="pwd">motdepasse</column>
-        </table>
-        <table name="eleves">
-            <column name="mail">test@ens.fr</column>
-            <column name="nom">test</column>
-            <column name="prenom">pwet</column>
-            <column name="pwd">motdepasse</column>
+            <column name="mail"></column>
+            <column name="nom"></column>
+            <column name="prenom"></column>
+            <column name="pwd">$2y$10$gWi6DAZIUWzXA5MkNuzphOBZWxXHRBM.cxZ56KfnK81VlOykcO71W</column>
         </table>
     </database>
 </pma_xml_export>
